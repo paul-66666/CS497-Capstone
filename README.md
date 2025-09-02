@@ -1,37 +1,38 @@
 
+---
 
- Aspect-Based Sentiment Analysis (ABSA) for Amazon Beauty Reviews
+# Aspect-Based Sentiment Analysis (ABSA) for Amazon Beauty Reviews
 
-Author: Jinquan Lin
-Advisor: Sam Chung, Ph.D.
-Program: BS in Applied Computer Science, City University of Seattle
+**Author:** Jinquan Lin
+**Advisor:** Sam Chung, Ph.D.
+**Program:** BS in Applied Computer Science, City University of Seattle
 
 ---
 
- 📌 Overview
+## 📌 Overview
 
-This project implements an end-to-end pipeline for root cause analysis of negative product reviews. Using the Amazon US Beauty Reviews dataset, the system identifies why customers are dissatisfied, not just whether sentiment is positive or negative.
+This project implements an **end-to-end pipeline for root cause analysis of negative product reviews**. Using the Amazon US Beauty Reviews dataset, the system identifies why customers are dissatisfied, not just whether sentiment is positive or negative.
 
 The pipeline combines:
 
-* A BiLSTM with attention to learn review-level polarity.
-* A compact aspect lexicon to detect product/service facets (e.g., quality, packaging, fragrance, delivery).
-* Fusion of BiLSTM outputs with VADER scores for stable sentence-level sentiment.
-* Keyword extraction (YAKE) and representative quotes** to provide human-readable evidence.
-* Exportable CSVs and charts for managerial decision-making.
+* A **BiLSTM with attention** to learn review-level polarity.
+* A **compact aspect lexicon** to detect product/service facets (e.g., quality, packaging, fragrance, delivery).
+* **Fusion of BiLSTM outputs with VADER** scores for stable sentence-level sentiment.
+* **Keyword extraction (YAKE)** and **representative quotes** to provide human-readable evidence.
+* **Exportable CSVs and charts** for managerial decision-making.
 
-This project was developed as part of my CS 497 Capstone at City University of Seattle.
+This project was developed as part of my **CS 497 Capstone** at City University of Seattle.
 
 ---
 
- ✨ Features
+## ✨ Features
 
-* Balanced BiLSTM training with interpretable attention layer.
-* Aspect-Based Sentiment Analysis (ABSA) using regex lexicons.
-* Fusion scoring (α = 0.7) for robust sentiment labeling.
-* Representative examples ranked by negativity and helpfulness.
-* Top keyword extraction with YAKE.
-* Visualization & export: bar charts and CSV tables.
+* **Balanced BiLSTM training** with interpretable attention layer.
+* **Aspect-Based Sentiment Analysis** (ABSA) using regex lexicons.
+* **Fusion scoring** (α = 0.7) for robust sentiment labeling.
+* **Representative examples** ranked by negativity and helpfulness.
+* **Top keyword extraction** with YAKE.
+* **Visualization & export**: bar charts and CSV tables.
 
 Output includes four CSVs:
 
@@ -42,33 +43,33 @@ Output includes four CSVs:
 
 ---
 
- 🛠️ Tech Stack
+## 🛠️ Tech Stack
 
-* Python (Colab / Jupyter Notebook)
-* TensorFlow / Keras – BiLSTM + Attention
-* scikit-learn – metrics & preprocessing
-* NLTK + VADER – sentence tokenization & rule-based sentiment
-* YAKE – keyword extraction
-* Matplotlib – visualization
+* **Python** (Colab / Jupyter Notebook)
+* **TensorFlow / Keras** – BiLSTM + Attention
+* **scikit-learn** – metrics & preprocessing
+* **NLTK + VADER** – sentence tokenization & rule-based sentiment
+* **YAKE** – keyword extraction
+* **Matplotlib** – visualization
 
 ---
 
- 📂 Data Source
+## 📂 Data Source
 
 * Dataset: [Amazon US Customer Reviews – Beauty (v1.00)](https://www.kaggle.com/datasets/beaglelee/amazon-reviews-us-beauty-v1-00-tsv-zip)
-* Scope: Focus on 1–2 star negative reviews to surface root causes.
+* Scope: Focus on **1–2 star negative reviews** to surface root causes.
 
 ---
 
- 🚀 Quick Start
+## 🚀 Quick Start
 
- 1. Install dependencies
+### 1. Install dependencies
 
-
+```bash
 pip install kagglehub nltk vaderSentiment yake tensorflow scikit-learn matplotlib
+```
 
-
- 2. Run in Colab
+### 2. Run in Colab
 
 Open the notebook and run cells in order. The pipeline will:
 
@@ -77,18 +78,18 @@ Open the notebook and run cells in order. The pipeline will:
 3. Extract aspects and compute sentiment.
 4. Export results as CSVs + visualizations.
 
- 3. Example Usage
+### 3. Example Usage
 
 After running, check `/content/` for exported CSVs and use them for analysis or dashboards.
 
 ---
 
- 📊 Example Outputs
+## 📊 Example Outputs
 
-* Top Negative Aspects (by count)
+* **Top Negative Aspects (by count)**
   ![Example chart](docs/top_negative_aspects.png)
 
-* Representative Negative Quotes
+* **Representative Negative Quotes**
   \| Aspect            | Example Quote                        | Fusion Score |
   \|-------------------|--------------------------------------|--------------|
   \| quality\_durability | “It broke after just one week.”       | -0.85 |
@@ -115,9 +116,8 @@ This project builds upon prior research in ABSA, sentiment analysis, and root ca
 
 ---
 
- 📜 License
+## 📜 License
 
 This project is for educational and research purposes under the guidance of City University of Seattle.
 
 ---
-
