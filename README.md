@@ -71,7 +71,7 @@ pip install kagglehub nltk vaderSentiment yake tensorflow scikit-learn matplotli
 
 ### 2. Run in Colab
 
-Open the notebook and run cells in order. The pipeline will:
+Open the latest Root_cause_analysis_system_for_negative_reviews notebook and run cells. The pipeline will:
 
 1. Download & clean data.
 2. Train or load BiLSTM model.
