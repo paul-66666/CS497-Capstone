@@ -1,5 +1,4 @@
 
----
 
 # Aspect-Based Sentiment Analysis (ABSA) for Amazon Beauty Reviews
 
@@ -11,15 +10,15 @@
 
 ## 📌 Overview
 
-This project implements an **end-to-end pipeline for root cause analysis of negative product reviews**. Using the Amazon US Beauty Reviews dataset, the system identifies why customers are dissatisfied, not just whether sentiment is positive or negative.
+This project implements an end-to-end pipeline for **root cause analysis of negative product reviews**. Using the **Amazon US Beauty Reviews dataset**, the system identifies *why* customers are dissatisfied—not just whether sentiment is positive or negative.
 
-The pipeline combines:
+The pipeline integrates:
 
-* A **BiLSTM with attention** to learn review-level polarity.
-* A **compact aspect lexicon** to detect product/service facets (e.g., quality, packaging, fragrance, delivery).
-* **Fusion of BiLSTM outputs with VADER** scores for stable sentence-level sentiment.
-* **Keyword extraction (YAKE)** and **representative quotes** to provide human-readable evidence.
-* **Exportable CSVs and charts** for managerial decision-making.
+* **BiLSTM + Attention** for review-level polarity.
+* **Aspect lexicon** to detect product/service facets (quality, packaging, fragrance, delivery).
+* **Fusion scoring (α = 0.7)**: BiLSTM + VADER for stable sentence-level sentiment.
+* **Keyword extraction (YAKE)** + representative quotes as human-readable evidence.
+* **Exportable CSVs & charts** to support managerial decision-making.
 
 This project was developed as part of my **CS 497 Capstone** at City University of Seattle.
 
@@ -27,19 +26,18 @@ This project was developed as part of my **CS 497 Capstone** at City University 
 
 ## ✨ Features
 
-* **Balanced BiLSTM training** with interpretable attention layer.
-* **Aspect-Based Sentiment Analysis** (ABSA) using regex lexicons.
-* **Fusion scoring** (α = 0.7) for robust sentiment labeling.
-* **Representative examples** ranked by negativity and helpfulness.
-* **Top keyword extraction** with YAKE.
-* **Visualization & export**: bar charts and CSV tables.
+* Balanced **BiLSTM** training with interpretable attention.
+* **Aspect-Based Sentiment Analysis (ABSA)** with regex lexicons.
+* **Representative examples** ranked by negativity + helpfulness.
+* **Keyword extraction with YAKE**.
+* **Visualization & export**: CSV tables and bar charts.
 
-Output includes four CSVs:
+### Outputs include:
 
-1. `absa_sentence_aspect_results.csv` – sentence-level aspect sentiment results.
-2. `absa_aspect_summary.csv` – total/negative counts and negative rate per aspect.
-3. `absa_aspect_negative_examples.csv` – top negative representative quotes.
-4. `absa_aspect_negative_keywords.csv` – per-aspect negative keywords.
+* `absa_sentence_aspect_results.csv` – sentence-level aspect sentiment results.
+* `absa_aspect_summary.csv` – counts and negative rate per aspect.
+* `absa_aspect_negative_examples.csv` – representative negative quotes.
+* `absa_aspect_negative_keywords.csv` – aspect-specific negative keywords.
 
 ---
 
@@ -47,8 +45,8 @@ Output includes four CSVs:
 
 * **Python** (Colab / Jupyter Notebook)
 * **TensorFlow / Keras** – BiLSTM + Attention
-* **scikit-learn** – metrics & preprocessing
-* **NLTK + VADER** – sentence tokenization & rule-based sentiment
+* **scikit-learn** – preprocessing & metrics
+* **NLTK + VADER** – sentence tokenization & sentiment
 * **YAKE** – keyword extraction
 * **Matplotlib** – visualization
 
@@ -56,59 +54,53 @@ Output includes four CSVs:
 
 ## 📂 Data Source
 
-* Dataset: [Amazon US Customer Reviews – Beauty (v1.00)](https://www.kaggle.com/datasets/beaglelee/amazon-reviews-us-beauty-v1-00-tsv-zip)
-* Scope: Focus on **1–2 star negative reviews** to surface root causes.
+* **Dataset:** Amazon US Customer Reviews – Beauty (v1.00)
+* **Scope:** Focus on 1–2 star negative reviews to surface *root causes*.
 
 ---
 
 ## 🚀 Quick Start
 
-### 1. Install dependencies
+### Option A – Fast Inference (no training)
 
-```bash
-pip install kagglehub nltk vaderSentiment yake tensorflow scikit-learn matplotlib
-```
+1. Go to the **Releases** page and download the three assets:
 
-### 2. Run in Colab
+   * `absa_bilstm_simpleatt.keras` (pretrained model)
+   * `tokenizer.json` (training tokenizer)
+   * `inference_config.json` (runtime settings)
+2. Place them in a folder, e.g. `./model_ckpt/`.
+3. In the notebook/script, set:
 
-Open the latest Root_cause_analysis_system_for_negative_reviews notebook and run cells. The pipeline will:
+   ```python
+   SAVE_DIR = "./model_ckpt"
+   LOAD_SAVED_MODEL = True
+   ```
+4. Run the pipeline → directly perform ABSA, aggregation, and export results.
 
-1. Download & clean data.
-2. Train or load BiLSTM model.
-3. Extract aspects and compute sentiment.
-4. Export results as CSVs + visualizations.
+### Option B – Train from scratch
 
-### 3. Example Usage
-
-After running, check `/content/` for exported CSVs and use them for analysis or dashboards.
+* Set `LOAD_SAVED_MODEL = False` to retrain BiLSTM on a balanced sample, then save new model + tokenizer + config.
 
 ---
 
 ## 📊 Example Outputs
 
-* **Top Negative Aspects (by count)**
-  ![Example chart](docs/top_negative_aspects.png)
-
-* **Representative Negative Quotes**
-  \| Aspect            | Example Quote                        | Fusion Score |
-  \|-------------------|--------------------------------------|--------------|
-  \| quality\_durability | “It broke after just one week.”       | -0.85 |
-  \| scent\_fragrance   | “The smell was too strong and bad.”  | -0.76 |
+* **Top Negative Aspects**: *scent/fragrance* & *quality/durability* (largest volumes).
+* **High Negative Rates**: *authenticity* & *customer service*.
+* Example quote: *“It broke after just one week.”* (durability, fusion score –0.85)
 
 ---
 
 ## 🎯 Applications
 
 * **E-commerce Operations** – detect recurring product failures.
-* **Quality Control** – track durability or formula issues.
-* **Customer Service** – monitor refund/return complaints.
-* **Logistics** – identify shipping & delivery problems.
+* **Quality Control** – monitor durability or formula issues.
+* **Customer Service** – track refund/return complaints.
+* **Logistics** – identify shipping & delivery delays.
 
 ---
 
 ## 📖 References
-
-This project builds upon prior research in ABSA, sentiment analysis, and root cause analytics, including:
 
 * Davoodi, L., Mezei, J., & Heikkilä, M. (2025). *Aspect-based sentiment classification of user reviews*. Electronic Commerce Research.
 * Malik, N., & Bilal, M. (2024). *NLP for analyzing online customer reviews: survey and taxonomy*. PeerJ Computer Science.
@@ -118,6 +110,7 @@ This project builds upon prior research in ABSA, sentiment analysis, and root ca
 
 ## 📜 License
 
-This project is for educational and research purposes under the guidance of City University of Seattle.
+This project is for **educational and research purposes** under the guidance of City University of Seattle.
 
 ---
+
