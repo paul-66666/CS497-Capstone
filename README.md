@@ -41,6 +41,13 @@ This project was developed as part of my **CS 497 Capstone** at City University 
 
 ---
 
+### 📈 Notes on Charts & Visualizations
+
+* All charts (ROC, PR curves, confusion matrix, aspect bar plots, keyword visualizations, etc.) are generated automatically when running the notebook in Google Colab.
+* If you want to view the charts and visual outputs from my final submission, please open:
+* Root_cause_analysis_system_for_negative_reviews Final Submission notebook
+* and scroll through the executed cells. The plots and exports are saved during runtime and attached below the relevant code blocks.
+
 ## 🛠️ Tech Stack
 
 * **Python** (Colab / Jupyter Notebook)
